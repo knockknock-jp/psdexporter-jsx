@@ -1,4 +1,4 @@
-# HTML初期構築自動化 ver2.0
+# PSD Exporter ver2.0
 
 ## 主な機能
 
