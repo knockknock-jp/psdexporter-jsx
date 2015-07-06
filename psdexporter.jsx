@@ -48,49 +48,49 @@ var DialogManager = function () {
     this.init = function () {
         var totalY = 0;
         // ウィンドウ作成
-        _window = new Window("dialog", "HTML初期構築自動化 ver2.0", _getPosition({x:200, y:200, w:390, h:850}));
+        _window = new Window("dialog", "HTML初期構築自動化 ver2.1", _getPosition({x:200, y:200, w:390, h:850}));
         // 画像ファイル設定
         totalY = 20;
         _imageCheckboxExport = _window.add("checkbox", _getPosition({x:20, y:totalY, w:320, h:40}), "画像ファイルを書き出す");
         _imageCheckboxExport.value = true;
-        _window.add("panel", _getPosition({x:20, y:totalY + 40, w:350, h:130}), "画像ファイル設定");
-        _window.add("statictext", _getPosition({x:40, y:totalY + 70, w:90, h:20}), "ディレクトリ :").justify = "right";
-        _imageEdittextDirectory = _window.add("edittext", _getPosition({x:140, y:totalY + 70, w:200, h:20}), "images");
-        _window.add("statictext", _getPosition({x:40, y:totalY + 100, w:90, h:20}), "ファイル形式 :").justify = "right";
-        _imageRadiobuttonPng = _window.add("radiobutton", _getPosition({x:140, y:totalY + 100, w:50, h:20}), "PNG");
+        imagePanel = _window.add("panel", _getPosition({x:20, y:totalY + 40, w:350, h:130}), "画像ファイル設定");
+        imagePanel.add("statictext", _getPosition({x:20, y:20, w:100, h:20}), "ディレクトリ :").justify = "right";
+        _imageEdittextDirectory = imagePanel.add("edittext", _getPosition({x:130, y:20, w:200, h:20}), "images");
+        imagePanel.add("statictext", _getPosition({x:20, y:50, w:100, h:20}), "ファイル形式 :").justify = "right";
+        _imageRadiobuttonPng = imagePanel.add("radiobutton", _getPosition({x:130, y:50, w:50, h:20}), "PNG");
         _imageRadiobuttonPng.value = true;
-        _imageRadiobuttonJpg = _window.add("radiobutton", _getPosition({x:200, y:totalY + 100, w:50, h:20}), "JPEG");
+        _imageRadiobuttonJpg = imagePanel.add("radiobutton", _getPosition({x:190, y:50, w:50, h:20}), "JPEG");
         _imageRadiobuttonJpg.value = false;
-        _imageRadiobuttonGif = _window.add("radiobutton", _getPosition({x:260, y:totalY + 100, w:50, h:20}), "GIF");
+        _imageRadiobuttonGif = imagePanel.add("radiobutton", _getPosition({x:250, y:50, w:50, h:20}), "GIF");
         _imageRadiobuttonGif.value = false;
-        _window.add("statictext", _getPosition({x:40, y:totalY + 130, w:90, h:20}), "JPEG画質 :").justify = "right";
-        _imageDropdownlistJpgCompress = _window.add("dropdownlist", _getPosition({x:140, y:totalY + 130, w:200, h:20}), ["100 （最高画質）", "90", "80 （高画質）", "70", "60 （やや高画質）", "50", "40", "30 （中画質）", "20", "10 （低画質）"]);
+        imagePanel.add("statictext", _getPosition({x:20, y:80, w:100, h:20}), "JPEG画質 :").justify = "right";
+        _imageDropdownlistJpgCompress = imagePanel.add("dropdownlist", _getPosition({x:130, y:80, w:200, h:20}), ["100 （最高画質）", "90", "80 （高画質）", "70", "60 （やや高画質）", "50", "40", "30 （中画質）", "20", "10 （低画質）"]);
         _imageDropdownlistJpgCompress.selection = 2;
         // HTMLファイル設定
         totalY = 200;
         _htmlCheckboxExport = _window.add("checkbox", _getPosition({x:20, y:totalY, w:350, h:40}), "HTMLファイルを書き出す");
         _htmlCheckboxExport.value = true;
-        _window.add("panel", _getPosition({x:20, y:totalY + 40, w:350, h:160}), "HTMLファイル設定");
-        _window.add("statictext", _getPosition({x:40, y:totalY + 70, w:90, h:20}), "ディレクトリ :").justify = "right";
-        _htmlEdittextDirectory = _window.add("edittext", _getPosition({x:140, y:totalY + 70, w:200, h:20}), "");
-        _window.add("statictext", _getPosition({x:40, y:totalY + 100, w:90, h:20}), "ファイル名 :").justify = "right";
-        _htmlEdittextName = _window.add("edittext", _getPosition({x:140, y:totalY + 100, w:200, h:20}), "index.html");
-        _window.add("statictext", _getPosition({x:40, y:totalY + 130, w:90, h:20}), "ドキュメント形式 :").justify = "right";
-        _htmlDropdownlistDoctype = _window.add("dropdownlist", _getPosition({x:140, y:totalY + 130, w:200, h:20}), ["HTML5", "Jade", "XHTML 1.0 Transitional", "HTML 4.01 Transitional"]);
+        htmlPanel = _window.add("panel", _getPosition({x:20, y:totalY + 40, w:350, h:160}), "HTMLファイル設定");
+        htmlPanel.add("statictext", _getPosition({x:20, y:20, w:100, h:20}), "ディレクトリ :").justify = "right";
+        _htmlEdittextDirectory = htmlPanel.add("edittext", _getPosition({x:130, y:20, w:200, h:20}), "");
+        htmlPanel.add("statictext", _getPosition({x:20, y:50, w:100, h:20}), "ファイル名 :").justify = "right";
+        _htmlEdittextName = htmlPanel.add("edittext", _getPosition({x:130, y:50, w:200, h:20}), "index.html");
+        htmlPanel.add("statictext", _getPosition({x:20, y:80, w:100, h:20}), "ドキュメント形式 :").justify = "right";
+        _htmlDropdownlistDoctype = htmlPanel.add("dropdownlist", _getPosition({x:130, y:80, w:200, h:20}), ["HTML5", "Jade", "XHTML 1.0 Transitional", "HTML 4.01 Transitional"]);
         _htmlDropdownlistDoctype.selection = 0;
-        _window.add("statictext", _getPosition({x:40, y:totalY + 160, w:90, h:20}), "ページタイトル :").justify = "right";
-        _htmlEdittextTitle = _window.add("edittext", _getPosition({x:140, y:totalY + 160, w:200, h:20}), "無題ドキュメント");
+        htmlPanel.add("statictext", _getPosition({x:20, y:110, w:100, h:20}), "ページタイトル :").justify = "right";
+        _htmlEdittextTitle = htmlPanel.add("edittext", _getPosition({x:130, y:110, w:200, h:20}), "無題ドキュメント");
         // CSSファイル設定
         totalY = 410;
         _cssCheckboxExport = _window.add("checkbox", _getPosition({x:20, y:totalY, w:350, h:40}), "CSSファイルを書き出す");
         _cssCheckboxExport.value = true;
-        _window.add("panel", _getPosition({x:20, y:totalY + 40, w:350, h:130}), "CSSファイル設定");
-        _window.add("statictext", _getPosition({x:40, y:totalY + 70, w:90, h:20}), "ディレクトリ :").justify = "right";
-        _cssEdittextDirectory = _window.add("edittext", _getPosition({x:140, y:totalY + 70, w:200, h:20}), "css");
-        _window.add("statictext", _getPosition({x:40, y:totalY + 100, w:90, h:20}), "ファイル名 :").justify = "right";
-        _cssEdittextName = _window.add("edittext", _getPosition({x:140, y:totalY + 100, w:200, h:20}), "index.css");
-        _window.add("statictext", _getPosition({x:40, y:totalY + 130, w:90, h:20}), "レイアウト :").justify = "right";
-        _cssCheckboxLayout = _window.add("checkbox", _getPosition({x:140, y:totalY + 130, w:200, h:20}), "absoluteで配置情報を書き込む");
+        _cssPanel = _window.add("panel", _getPosition({x:20, y:totalY + 40, w:350, h:130}), "CSSファイル設定");
+        _cssPanel.add("statictext", _getPosition({x:20, y:20, w:100, h:20}), "ディレクトリ :").justify = "right";
+        _cssEdittextDirectory = _cssPanel.add("edittext", _getPosition({x:130, y:20, w:200, h:20}), "css");
+        _cssPanel.add("statictext", _getPosition({x:20, y:50, w:100, h:20}), "ファイル名 :").justify = "right";
+        _cssEdittextName = _cssPanel.add("edittext", _getPosition({x:130, y:50, w:200, h:20}), "index.css");
+        _cssPanel.add("statictext", _getPosition({x:20, y:80, w:100, h:20}), "レイアウト :").justify = "right";
+        _cssCheckboxLayout = _cssPanel.add("checkbox", _getPosition({x:130, y:80, w:200, h:20}), "absoluteで配置情報を書き込む");
         _cssCheckboxLayout.value = true;
         // その他オプション
         totalY = 600;
